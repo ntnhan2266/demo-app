@@ -1,6 +1,6 @@
 import React from 'react';
-import RegisterForm from '@/components/RegisterForm';
 import { Link } from 'react-router-dom';
+import RegisterForm from '@/components/RegisterForm';
 import { ROUTE_PATH } from '@/constants/route-path';
 
 const RegisterPage: React.FC = () => {

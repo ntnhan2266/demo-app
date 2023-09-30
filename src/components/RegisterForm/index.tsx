@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
+import Button from '@/components/Button';
+import Input from '@/components/Input';
 import { isValidContact } from '@/utils/validation';
 import { registerUser } from '@/services/auth';
-import Input from '@/components/Input';
-import Button from '@/components/Button';
 import { ROUTE_PATH } from '@/constants/route-path';
 
 interface IFormInputs {
