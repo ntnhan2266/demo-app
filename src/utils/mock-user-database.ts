@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
-import { LOCALSTORAGE_KEY } from "@/constants/localstorage-key";
-import { User } from "@/interfaces/user";
+import { LOCALSTORAGE_KEY } from '@/constants/localstorage-key';
+import { User } from '@/interfaces/user';
 
 const getUsersFromLocalStorage = (): User[] => {
   const usersJson = localStorage.getItem(LOCALSTORAGE_KEY.USERS);
-  return usersJson ? JSON.parse(usersJson) : [];
+  return usersJson ? (JSON.parse(usersJson) as Array<User>) : [];
 };
 
 const saveUsersToLocalStorage = (users: User[]): void => {
@@ -39,7 +39,7 @@ export const loginUser = (emailOrPhone: string, password: string): User | null =
 
   // Find the user with matching credentials
   const matchedUser = users.find(
-    (u: User) => u.emailOrPhone === emailOrPhone && bcrypt.compareSync(password, u.password)
+    (u: User) => u.emailOrPhone === emailOrPhone && bcrypt.compareSync(password, u.password),
   );
 
   if (matchedUser) {

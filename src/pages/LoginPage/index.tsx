@@ -12,7 +12,7 @@ const RegisterPage: React.FC = () => {
         </div>
         <div>
           <p className='text-center'>
-            Don't have an account yet? &nbsp;
+            Don&apos;t have an account yet? &nbsp;
             <Link className='underline' to={ROUTE_PATH.LOGIN}>
               Register now.
             </Link>

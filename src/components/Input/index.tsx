@@ -54,4 +54,6 @@ const Input: React.FC<IProps> = React.forwardRef<HTMLInputElement, IProps>(
   },
 );
 
+Input.displayName = 'InputComponent';
+
 export default Input;

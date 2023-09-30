@@ -6,7 +6,7 @@ export const isValidVietnamesePhoneNumber = (phoneNumber: string): boolean => {
 
 export const isValidEmail = (email: string): boolean => {
   // Regular expression for email validation
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$$/;
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   return emailRegex.test(email);
 };
