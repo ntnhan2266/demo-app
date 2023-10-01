@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '@/contexts/user-context';
+import { useUser } from '@/contexts/UserContext';
 import { ROUTE_PATH } from '@/constants/route-path';
 import Button from '@/components/common/Button';
 

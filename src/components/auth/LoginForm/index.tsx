@@ -6,7 +6,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { ROUTE_PATH } from '@/constants/route-path';
 import { isValidContact } from '@/utils/validation';
-import { useUser } from '@/contexts/user-context';
+import { useUser } from '@/contexts/UserContext';
 
 interface ILoginFormInputs {
   emailOrPhone: string;

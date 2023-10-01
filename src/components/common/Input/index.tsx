@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   errorMessage?: string;
   required?: boolean;
 }
@@ -34,10 +34,12 @@ const Input: React.FC<IProps> = React.forwardRef<HTMLInputElement, IProps>(
 
     return (
       <div className='mb-4'>
-        <label htmlFor={label} className={labelClasses}>
-          {label}
-          {required && <sup className='text-red-600'>*</sup>}
-        </label>
+        {label && (
+          <label htmlFor={label} className={labelClasses}>
+            {label}
+            {required && <sup className='text-red-600'>*</sup>}
+          </label>
+        )}
         <input
           ref={ref}
           type={type}

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterPage from '@/pages/RegisterPage';
 import LoginPage from '@/pages/LoginPage';
 import DashboardPage from '@/pages/DashboardPage';
-import { UserProvider } from '@/contexts/user-context';
+import { UserProvider } from '@/contexts/UserContext';
 import { ROUTE_PATH } from '@/constants/route-path';
 
 const App: React.FC = (): React.ReactElement => {
