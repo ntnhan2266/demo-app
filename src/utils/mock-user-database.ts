@@ -1,26 +1,26 @@
 import bcrypt from 'bcryptjs';
 import { LOCALSTORAGE_KEY } from '@/constants/localstorage-key';
-import { User } from '@/interfaces/user';
+import { IUser } from '@/interfaces/user';
 
-const getUsersFromLocalStorage = (): User[] => {
+const getUsersFromLocalStorage = (): IUser[] => {
   const usersJson = localStorage.getItem(LOCALSTORAGE_KEY.USERS);
-  return usersJson ? (JSON.parse(usersJson) as Array<User>) : [];
+  return usersJson ? (JSON.parse(usersJson) as Array<IUser>) : [];
 };
 
-const saveUsersToLocalStorage = (users: User[]): void => {
+const saveUsersToLocalStorage = (users: IUser[]): void => {
   localStorage.setItem(LOCALSTORAGE_KEY.USERS, JSON.stringify(users));
 };
 
-export const registerUser = (user: User): boolean => {
+export const registerUser = (user: IUser): boolean => {
   const users = getUsersFromLocalStorage();
 
   // Check if the email or phone is unique
-  const isUnique = !users.some((u: User) => u.emailOrPhone === user.emailOrPhone);
+  const isUnique = !users.some((u: IUser) => u.emailOrPhone === user.emailOrPhone);
 
   if (isUnique) {
     // Hash the password before saving the new user
     const hashedPassword = bcrypt.hashSync(user.password, 10);
-    const newUser: User = {
+    const newUser: IUser = {
       ...user,
       password: hashedPassword,
     };
@@ -34,12 +34,12 @@ export const registerUser = (user: User): boolean => {
   return false; // Registration failed (email or phone is duplicated)
 };
 
-export const loginUser = (emailOrPhone: string, password: string): User | null => {
+export const loginUser = (emailOrPhone: string, password: string): IUser | null => {
   const users = getUsersFromLocalStorage();
 
   // Find the user with matching credentials
   const matchedUser = users.find(
-    (u: User) => u.emailOrPhone === emailOrPhone && bcrypt.compareSync(password, u.password),
+    (u: IUser) => u.emailOrPhone === emailOrPhone && bcrypt.compareSync(password, u.password),
   );
 
   if (matchedUser) {

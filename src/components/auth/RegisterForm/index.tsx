@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from "react-router-dom";
-import Button from '@/components/Button';
-import Input from '@/components/Input';
+import Button from '@/components/common/Button';
+import Input from '@/components/common/Input';
 import { isValidContact } from '@/utils/validation';
 import { registerUser } from '@/services/auth';
-import { ROUTE_PATH } from '@/constants/route-path';
 
 interface IFormInputs {
   firstName: string;
@@ -16,7 +14,6 @@ interface IFormInputs {
 }
 
 const RegisterForm: React.FC = (): React.ReactElement => {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -49,9 +46,6 @@ const RegisterForm: React.FC = (): React.ReactElement => {
 
     // Reset the form
     reset();
-
-    // Navigate to login page
-    navigate(ROUTE_PATH.LOGIN);
   };
 
   return (

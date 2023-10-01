@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '@/services/auth';
-import Input from '@/components/Input';
-import Button from '@/components/Button';
+import Input from '@/components/common/Input';
+import Button from '@/components/common/Button';
 import { ROUTE_PATH } from '@/constants/route-path';
 import { isValidContact } from '@/utils/validation';
+import { useUser } from '@/contexts/user-context';
 
 interface ILoginFormInputs {
   emailOrPhone: string;
@@ -19,6 +20,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginFormInputs>();
+  const { setUser } = useUser();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -32,6 +34,9 @@ const LoginForm: React.FC = (): React.ReactElement => {
 
     // For simplicity, just display a success message
     setSuccessMessage('Login successful!');
+
+    // Update authenticated user data into context
+    setUser(user);
 
     // Reset the form
     // Note: Use reset() if you need to clear the form fields

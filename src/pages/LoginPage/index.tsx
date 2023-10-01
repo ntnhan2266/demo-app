@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginForm from '@/components/LoginForm';
+import LoginForm from '@/components/auth/LoginForm';
 import { ROUTE_PATH } from '@/constants/route-path';
 
 const RegisterPage: React.FC = () => {

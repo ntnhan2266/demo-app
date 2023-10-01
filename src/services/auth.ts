@@ -1,12 +1,12 @@
-import { User } from '@/interfaces/user';
+import { IUser } from '@/interfaces/user';
 import { loginUser as mockLoginUser, registerUser as mockRegisterUser } from '@/utils/mock-user-database';
 
-export const registerUser = (user: User): boolean => {
+export const registerUser = (user: IUser): boolean => {
   // Just call mock function to simulate api call
   return mockRegisterUser(user);
 };
 
-export const loginUser = (emailOrPhone: string, password: string): User | null => {
+export const loginUser = (emailOrPhone: string, password: string): IUser | null => {
   const matchedUser = mockLoginUser(emailOrPhone, password);
 
   if (matchedUser) {
