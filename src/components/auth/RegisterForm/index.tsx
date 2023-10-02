@@ -73,6 +73,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           type='text'
           label='First name'
           placeholder='Enter your first name'
+          wrapperClass='mb-4'
           required
         />
         <Input
@@ -81,6 +82,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           type='text'
           label='Last name'
           placeholder='Enter your last name'
+          wrapperClass='mb-4'
           required
         />
         <Input
@@ -93,13 +95,14 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           name='emailOrPhone'
           label='Email or phone'
           placeholder='Enter either your email or phone number'
+          wrapperClass='mb-4'
           required
         />
         <Input
           {...register('password', {
             required: 'Password is required',
             pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/,
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{12,}$/,
               message:
                 'Password must be strong (include uppercase, lowercase, number, special character, and at least 12 characters).',
             },
@@ -108,6 +111,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           type='password'
           label='Password'
           placeholder='Enter your password'
+          wrapperClass='mb-4'
           required
         />
         <Input
@@ -123,6 +127,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           type='password'
           label='Confirm password'
           placeholder='Confirm your password'
+          wrapperClass='mb-4'
           required
         />
         <Button label='Register' type='submit' fullWidth />

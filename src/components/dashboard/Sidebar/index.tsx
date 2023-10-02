@@ -1,11 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '@/hooks/useUser';
 import { ROUTE_PATH } from '@/constants/route-path';
 import Button from '@/components/common/Button';
+import { removeAuthUserFromLocalStorage } from '@/utils/auth-storage';
 
 const Sidebar: React.FC = (): React.ReactElement => {
   const { user } = useUser();
+  const navigate = useNavigate();
+
+  const onLogout = (): void => {
+    removeAuthUserFromLocalStorage();
+    navigate(ROUTE_PATH.LOGIN);
+  };
 
   if (!user) {
     return <></>; // If there is no user, return an empty fragment
@@ -28,12 +35,17 @@ const Sidebar: React.FC = (): React.ReactElement => {
             </Link>
           </li>
           <li className='mb-2'>
+            <Link to={ROUTE_PATH.DASHBOARD_UPDATE_PASSWORD} className='block w-full text-left hover:bg-green p-2'>
+              Update password
+            </Link>
+          </li>
+          <li className='mb-2'>
             <Link to={ROUTE_PATH.DASHBOARD_GITHUB_REPOS} className='block w-full text-left hover:bg-blue-300 p-2'>
               Query github repos
             </Link>
           </li>
           <li className='mb-2'>
-            <Button variant='primary' label='Logout' />
+            <Button onClick={onLogout} variant='ghost' label='Logout' fullWidth />
           </li>
         </ul>
       </nav>

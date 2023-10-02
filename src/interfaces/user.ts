@@ -5,4 +5,4 @@ export interface IUser {
   password: string;
 }
 
-export type PublicUser = Omit<IUser, "password">
+export type PublicUser = Omit<IUser, 'password'>;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginForm from '@/components/auth/LoginForm';
 import { ROUTE_PATH } from '@/constants/route-path';
+import withAuthentication from '@/hocs/withAuthentication';
 
 const RegisterPage: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const RegisterPage: React.FC = () => {
         <div>
           <p className='text-center'>
             Don&apos;t have an account yet? &nbsp;
-            <Link className='underline' to={ROUTE_PATH.LOGIN}>
+            <Link className='underline' to={ROUTE_PATH.REGISTER}>
               Register now.
             </Link>
           </p>
@@ -23,4 +24,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default RegisterPage;
+export default withAuthentication(RegisterPage);

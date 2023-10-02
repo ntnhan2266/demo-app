@@ -4,7 +4,7 @@ import { IUser } from '@/interfaces/user';
 
 const getUsersFromLocalStorage = (): Map<string, IUser> => {
   const usersJson = localStorage.getItem(LOCALSTORAGE_KEY.USERS);
-  const users = usersJson ? (JSON.parse(usersJson)) : [];
+  const users = (usersJson ? JSON.parse(usersJson) : []) as [string, IUser][];
 
   // Convert the array to a map for efficient queries
   const usersMap = new Map<string, IUser>(users);
@@ -50,7 +50,7 @@ export const loginUser = (emailOrPhone: string, password: string): IUser | null 
   return null; // Return null for unsuccessful login
 };
 
-export const updateUser = (emailOrPhone: string, updatedInfo: Partial<IUser>): boolean => {
+export const updateUser = (emailOrPhone: string, updatedInfo: Partial<Omit<IUser, 'password'>>): IUser | null => {
   const usersMap = getUsersFromLocalStorage();
 
   // Find the user with the specified emailOrPhone
@@ -69,8 +69,36 @@ export const updateUser = (emailOrPhone: string, updatedInfo: Partial<IUser>): b
     // Save the updated map back to local storage
     saveUsersToLocalStorage(usersMap);
 
-    return true; // Update successful
+    return updatedUser; // Update successful
   }
 
-  return false; // User not found (update failed)
+  return null; // User not found (update failed)
+};
+
+export const updatePassword = (emailOrPhone: string, oldPassword: string, newPassword: string): boolean => {
+  const usersMap = getUsersFromLocalStorage();
+
+  // Find the user with the specified emailOrPhone
+  const userToUpdate = usersMap.get(emailOrPhone);
+
+  if (userToUpdate && bcrypt.compareSync(oldPassword, userToUpdate.password)) {
+    // If the old password matches, hash the new password
+    const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
+
+    // Update the user's password
+    const updatedUser: IUser = {
+      ...userToUpdate,
+      password: hashedNewPassword,
+    };
+
+    // Save the updated user back to the map
+    usersMap.set(emailOrPhone, updatedUser);
+
+    // Save the updated map back to local storage
+    saveUsersToLocalStorage(usersMap);
+
+    return true; // Password update successful
+  }
+
+  return false; // User not found or old password does not match (password update failed)
 };

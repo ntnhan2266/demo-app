@@ -59,6 +59,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
           type='text'
           label='Email or phone'
           placeholder='Enter your email or phone number'
+          wrapperClass='mb-4'
           required
         />
         <Input
@@ -69,6 +70,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
           type='password'
           label='Password'
           placeholder='Enter your password'
+          wrapperClass='mb-4'
           required
         />
         <Button label='Login' type='submit' fullWidth />
