@@ -27,8 +27,8 @@ export const getListReposByUsername = async (params: IGetGithubReposParams) => {
       }),
     });
 
-    // Convert to IGithubRepo[]
-    const repos: IGithubRepo[] = response.data;
+    // Convert to Array<IGithubRepo>
+    const repos: Array<IGithubRepo> = response.data as Array<IGithubRepo>;
     return repos;
   } catch (error) {
     // Handle errors here, e.g., log the error, show a user-friendly message, etc.

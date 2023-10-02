@@ -1,41 +1,29 @@
-export const camelCaseKeys = (obj: Record<string, any>): Record<string, any> => {
+type TransformFunction = (_key: string) => string;
+
+const transformKeys = <T>(obj: Record<string, T>, keyTransform: TransformFunction): Record<string, T> => {
   if (typeof obj !== 'object' || obj === null) {
     return obj;
   }
 
   if (Array.isArray(obj)) {
-    return obj.map((item) => camelCaseKeys(item));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+    return obj.map((item) => transformKeys(item, keyTransform)) as any;
   }
 
-  const camelCaseObj: Record<string, any> = {};
+  const transformedObj: Record<string, T> = {};
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const camelCaseKey = key.replace(/_([a-z])/g, (_, group) => group.toUpperCase());
-      camelCaseObj[camelCaseKey] = camelCaseKeys(obj[key]);
+      const transformedKey = keyTransform(key);
+      transformedObj[transformedKey] = obj[key];
     }
   }
 
-  return camelCaseObj;
+  return transformedObj;
 };
 
-export const snakeCaseKeys = (obj: Record<string, any>): Record<string, any> => {
-  if (typeof obj !== 'object' || obj === null) {
-    return obj;
-  }
+export const camelCaseKeys = <T>(obj: Record<string, T>): Record<string, T> =>
+  transformKeys(obj, (key) => key.replace(/_([a-z])/g, (_, group: string) => group.toUpperCase()));
 
-  if (Array.isArray(obj)) {
-    return obj.map((item) => snakeCaseKeys(item));
-  }
-
-  const snakeCaseObj: Record<string, any> = {};
-
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const snakeCaseKey = key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`);
-      snakeCaseObj[snakeCaseKey] = snakeCaseKeys(obj[key]);
-    }
-  }
-
-  return snakeCaseObj;
-};
+export const snakeCaseKeys = <T>(obj: Record<string, T>): Record<string, T> =>
+  transformKeys(obj, (key) => key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`));

@@ -38,7 +38,8 @@ const createAxiosInstance = ({ baseURL = '', headers }: IAxiosInstanceOptions): 
   instance.interceptors.response.use(
     (response) => {
       // Modify the response here before it reaches the calling component
-      const modifiedResponseData = camelCaseKeys(response.data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const modifiedResponseData = camelCaseKeys(response.data as Record<string, any>);
       return { ...response, data: modifiedResponseData };
     },
     (error) => {

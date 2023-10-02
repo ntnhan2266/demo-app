@@ -29,7 +29,7 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
         setRepos((prev) => [...prev, ...res]);
       }
       setPage((prev) => prev + 1);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching data:', error);
       setError('Error fetching data. Please try again.'); // Set error state
     } finally {
@@ -38,12 +38,10 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
   };
 
   const fetchInitialData = async () => {
-    setLoading(true);
     await fetchData(1);
   };
 
   const fetchMoreData = async () => {
-    setLoading(true);
     await fetchData(page);
   };
 
@@ -65,26 +63,35 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
         <table className='min-w-full leading-normal'>
           <thead>
             <tr>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Repo name</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Created at</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Language</th>
+              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                Repo name
+              </th>
+              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                Created at
+              </th>
+              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                Language
+              </th>
             </tr>
           </thead>
           <tbody>
             {repos.map((repo) => (
-              <tr>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a className='hover:underline' href={repo.gitUrl}>{repo.name}</a>
-              </td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{repo.createdAt}</td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{repo.language}</td>
-            </tr>
+              <tr key={repo.id}>
+                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                  <a className='hover:underline' href={repo.gitUrl}>
+                    {repo.name}
+                  </a>
+                </td>
+                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>{repo.createdAt}</td>
+                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>{repo.language}</td>
+              </tr>
             ))}
           </tbody>
         </table>
       )}
 
       {loading && <p className='text-center'>Loading...</p>}
+      {error && <p>{error}</p>}
 
       {hasMore && !loading && repos.length > 0 && (
         <div className='flex justify-center'>

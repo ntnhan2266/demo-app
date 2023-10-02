@@ -4,6 +4,8 @@ import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import { isValidContact } from '@/utils/validation';
 import { registerUser } from '@/services/auth';
+import ErrorModal from '@/components/common/ErrorModal';
+import SuccessModal from '@/components/common/SuccessModal';
 
 interface IFormInputs {
   firstName: string;
@@ -30,19 +32,32 @@ const RegisterForm: React.FC = (): React.ReactElement => {
       confirmPassword: '',
     },
   });
-  const [outcomeMessage, setOutcomeMessage] = useState<string | null>(null);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  const closeErrorModal = (): void => {
+    // Close the error modal
+    setIsErrorModalOpen(false);
+  };
+
+  const closeSuccessModal = (): void => {
+    // Close the success modal
+    setIsSuccessModalOpen(false);
+  };
 
   const onSubmit = (values: IFormInputs): void => {
     const result = registerUser(values);
     if (!result) {
+      // Registration failed
+      setIsErrorModalOpen(true);
       setError('emailOrPhone', {
-        message: 'This email or phone is already in use.'
+        message: 'This email or phone is already in use.',
       });
       return;
     }
 
-    // For simplicity, just display a success message
-    setOutcomeMessage('Registration successful!');
+    // Registration successful
+    setIsSuccessModalOpen(true);
 
     // Reset the form
     reset();
@@ -112,7 +127,18 @@ const RegisterForm: React.FC = (): React.ReactElement => {
         />
         <Button label='Register' type='submit' fullWidth />
       </form>
-      {outcomeMessage && <div className='mt-4 p-3 bg-green-200 text-green-800 rounded-md'>{outcomeMessage}</div>}
+      <ErrorModal
+        title='Failure!'
+        content='There was an error during the registration process. Please try again.'
+        isOpen={isErrorModalOpen}
+        onClose={closeErrorModal}
+      />
+      <SuccessModal
+        title='Success!'
+        content='Your account has been successfully registered.'
+        isOpen={isSuccessModalOpen}
+        onClose={closeSuccessModal}
+      />
     </div>
   );
 };

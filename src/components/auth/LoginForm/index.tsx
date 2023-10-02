@@ -6,7 +6,7 @@ import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
 import { ROUTE_PATH } from '@/constants/route-path';
 import { isValidContact } from '@/utils/validation';
-import { useUser } from '@/contexts/UserContext';
+import { useUser } from '@/hooks/useUser';
 
 interface ILoginFormInputs {
   emailOrPhone: string;
@@ -43,7 +43,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
     // reset();
 
     // Navigate to the dashboard or any other page after login
-    navigate(ROUTE_PATH.DASHBOARD);
+    navigate(ROUTE_PATH.DASHBOARD_UPDATE_INFO);
   };
 
   return (
