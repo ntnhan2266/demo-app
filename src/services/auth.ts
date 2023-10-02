@@ -1,5 +1,9 @@
 import { IUser } from '@/interfaces/user';
-import { loginUser as mockLoginUser, registerUser as mockRegisterUser } from '@/utils/mock-user-database';
+import { 
+  loginUser as mockLoginUser, 
+  registerUser as mockRegisterUser,
+  updateUser as mockUpdateUser
+} from '@/utils/mock-user-database';
 
 export const registerUser = (user: IUser): boolean => {
   // Just call mock function to simulate api call
@@ -15,4 +19,9 @@ export const loginUser = (emailOrPhone: string, password: string): IUser | null 
   }
 
   return null; // Return null for unsuccessful login
+};
+
+export const updateUserInfo = (emailOrPhone: string, updatedInfo: Partial<IUser>): boolean => {
+  // Just call mock function to simulate api call
+  return mockUpdateUser(emailOrPhone, updatedInfo);
 };
