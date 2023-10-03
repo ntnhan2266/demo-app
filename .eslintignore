@@ -5,3 +5,5 @@ yarn.lock
 **/*.scss
 **/*.snap
 **/*.md
+jest.config.ts
+setupTests.ts

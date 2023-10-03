@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
+<div
+  data-testid="update-user-info-form"
+>
+  <h2
+    className="text-2xl font-bold mb-4"
+  >
+    Update your information
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="mb-4"
+    >
+      <label
+        className="block text-sm font-semibold mb-1"
+        htmlFor="Email or phone"
+      >
+        Email or phone
+      </label>
+      <input
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  bg-gray-200 cursor-not-allowed"
+        disabled={true}
+        placeholder=""
+        type="text"
+        value="test@example.com"
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <label
+        className="block text-sm font-semibold mb-1"
+        htmlFor="First name"
+      >
+        First name
+      </label>
+      <input
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        data-testid="first-name-input"
+        disabled={false}
+        name="firstName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter your first name"
+        type="text"
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <label
+        className="block text-sm font-semibold mb-1"
+        htmlFor="Last name"
+      >
+        Last name
+      </label>
+      <input
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        data-testid="last-name-input"
+        disabled={false}
+        name="lastName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter your last name"
+        type="text"
+      />
+    </div>
+    <button
+      className="px-4 py-2 rounded-md focus:outline-none w-96 bg-blue-500 text-white"
+      data-testid="submit-button"
+      disabled={false}
+      type="submit"
+    >
+      Update Info
+    </button>
+  </form>
+</div>
+`;
