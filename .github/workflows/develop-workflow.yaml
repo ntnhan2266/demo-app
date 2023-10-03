@@ -30,7 +30,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Test App
+      - name: Run Tests
         run: yarn test
 
       - name: Build App

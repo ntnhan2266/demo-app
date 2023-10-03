@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc)
 
 /**
  * Format a timestamp or date using dayjs.
@@ -7,5 +9,5 @@ import dayjs from 'dayjs';
  * @returns {string} The formatted date string.
  */
 export const formatTime = (timestampOrDate: string | number | Date, format: string = 'YYYY-MM-DD HH:mm:ss'): string => {
-  return dayjs(timestampOrDate).format(format);
+  return dayjs(timestampOrDate).utc().format(format);
 };
