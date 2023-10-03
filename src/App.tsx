@@ -13,7 +13,7 @@ const App: React.FC = (): React.ReactElement => {
         <Route path={ROUTE_PATH.REGISTER} element={<RegisterPage />} />
         <Route path={ROUTE_PATH.LOGIN} element={<LoginPage />} />
         <Route path={ROUTE_PATH.DASHBOARD} element={<DashboardPage />} />
-        <Route path="*" element={<Navigate to={ROUTE_PATH.LOGIN} />} />
+        <Route path='*' element={<Navigate to={ROUTE_PATH.LOGIN} />} />
       </Routes>
     </UserProvider>
   );

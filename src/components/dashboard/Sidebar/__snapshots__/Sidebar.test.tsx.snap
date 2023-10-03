@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar component should match the snapshot 1`] = `
+<aside
+  className="shadow text-black p-4"
+  data-testid="sidebar"
+>
+  <div
+    className="mb-4"
+  >
+    <h2
+      className="text-xl font-semibold"
+    >
+      John
+       
+      Doe
+    </h2>
+    <p>
+      john.doe@example.com
+    </p>
+  </div>
+  <nav>
+    <ul>
+      <li
+        className="mb-2"
+      >
+        <a
+          className="block w-full text-left hover:bg-green p-2"
+          href="/dashboard/update-info"
+          onClick={[Function]}
+        >
+          Update user info
+        </a>
+      </li>
+      <li
+        className="mb-2"
+      >
+        <a
+          className="block w-full text-left hover:bg-green p-2"
+          href="/dashboard/update-password"
+          onClick={[Function]}
+        >
+          Update password
+        </a>
+      </li>
+      <li
+        className="mb-2"
+      >
+        <a
+          className="block w-full text-left hover:bg-blue-300 p-2"
+          href="/dashboard/github-repos"
+          onClick={[Function]}
+        >
+          Query github repos
+        </a>
+      </li>
+      <li
+        className="mb-2"
+      >
+        <button
+          className="px-4 py-2 rounded-md focus:outline-none  bg-transparent text-gray-600 border border-gray-500 hover:bg-gray-200 w-full"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Logout
+        </button>
+      </li>
+    </ul>
+  </nav>
+</aside>
+`;

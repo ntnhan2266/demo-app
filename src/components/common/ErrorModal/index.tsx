@@ -1,15 +1,14 @@
-// src/components/RegisterFailedModal.tsx
 import React from 'react';
 import Modal from '@/components/common/Modal';
 
-interface RegisterFailedModalProps {
+interface IProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   content: string;
 }
 
-const ErrorModal: React.FC<RegisterFailedModalProps> = ({ isOpen, onClose, title, content }) => {
+const ErrorModal: React.FC<IProps> = ({ isOpen, onClose, title, content }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='medium' backdrop={true} isCenter={true} closeButtonLabel='OK'>
       <p className='text-xl mb-1'>&#128558;</p>

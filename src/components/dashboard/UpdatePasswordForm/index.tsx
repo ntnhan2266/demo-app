@@ -66,7 +66,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <div data-testid='update-user-password-form'>
       <h2 className='text-2xl font-bold mb-4'>Update your password</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -76,6 +76,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
           label='Current Password'
           placeholder='Enter your current password'
           wrapperClass='mb-4'
+          data-testid='current-password-input'
           required
         />
         <Input
@@ -92,6 +93,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
           label='New Password'
           placeholder='Enter your new password'
           wrapperClass='mb-4'
+          data-testid='new-password-input'
           required
         />
         <Input
@@ -108,9 +110,10 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
           label='Confirm New Password'
           placeholder='Confirm your new password'
           wrapperClass='mb-4'
+          data-testid='confirm-password-input'
           required
         />
-        <Button label='Update Password' type='submit' className='w-96' />
+        <Button data-testid='submit-button' label='Update Password' type='submit' className='w-96' />
       </form>
       <ErrorModal
         title='Failure!'

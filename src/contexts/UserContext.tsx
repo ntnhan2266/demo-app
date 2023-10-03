@@ -2,7 +2,7 @@ import React, { createContext, useState, ReactNode } from 'react';
 import { PublicUser } from '@/interfaces/user';
 
 // Context interface
-interface IUserContext {
+export interface IUserContext {
   user: PublicUser | null;
   setUser: (_user: PublicUser | null) => void;
 }

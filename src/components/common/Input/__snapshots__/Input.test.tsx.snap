@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should match the snapshot 1`] = `
+<div
+  className=""
+>
+  <input
+    className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+    disabled={false}
+    placeholder=""
+    type="text"
+  />
+</div>
+`;

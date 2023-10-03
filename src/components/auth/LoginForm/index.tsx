@@ -18,6 +18,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ILoginFormInputs>();
   const { setUser } = useUser();
@@ -40,14 +41,14 @@ const LoginForm: React.FC = (): React.ReactElement => {
 
     // Reset the form
     // Note: Use reset() if you need to clear the form fields
-    // reset();
+    reset();
 
     // Navigate to the dashboard or any other page after login
     navigate(ROUTE_PATH.DASHBOARD_UPDATE_INFO);
   };
 
   return (
-    <div className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
+    <div data-testid='login-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
       <h2 className='text-2xl font-bold mb-4'>Login to your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -60,6 +61,7 @@ const LoginForm: React.FC = (): React.ReactElement => {
           label='Email or phone'
           placeholder='Enter your email or phone number'
           wrapperClass='mb-4'
+          data-testid='email-or-phone-input'
           required
         />
         <Input
@@ -71,12 +73,21 @@ const LoginForm: React.FC = (): React.ReactElement => {
           label='Password'
           placeholder='Enter your password'
           wrapperClass='mb-4'
+          data-testid='password-input'
           required
         />
-        <Button label='Login' type='submit' fullWidth />
+        <Button data-testid='submit-button' label='Login' type='submit' fullWidth />
       </form>
-      {successMessage && <div className='mt-4 p-3 bg-green-200 text-green-800 rounded-md'>{successMessage}</div>}
-      {errorMessage && <div className='mt-4 p-3 bg-red-200 text-red-800 rounded-md'>{errorMessage}</div>}
+      {successMessage && (
+        <div data-testid className='mt-4 p-3 bg-green-200 text-green-800 rounded-md'>
+          {successMessage}
+        </div>
+      )}
+      {errorMessage && (
+        <div data-testid='error-message' className='mt-4 p-3 bg-red-200 text-red-800 rounded-md'>
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const apiClient = createAxiosInstance({
   },
 });
 
-export const getListReposByUsername = async (params: IGetGithubReposParams) => {
+export const getListReposByUsername = async (params: IGetGithubReposParams): Promise<Array<IGithubRepo>> => {
   try {
     // Destructure the params
     const { username, page = 1, perPage = 20, sort = 'updated_at', direction = 'desc' } = params;
@@ -19,7 +19,7 @@ export const getListReposByUsername = async (params: IGetGithubReposParams) => {
     // Make the request to the GitHub API
     const response = await apiClient.get(`/users/${username}/repos`, {
       // Adjusting the parameter name based on the interface
-      params: snakeCaseKeys({
+      params: snakeCaseKeys<Record<string, string>>({
         page,
         perPage,
         sort,

@@ -64,7 +64,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
+    <div data-testid='register-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
       <h2 className='text-2xl font-bold mb-4'>Create your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -74,6 +74,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           label='First name'
           placeholder='Enter your first name'
           wrapperClass='mb-4'
+          data-testid='first-name-input'
           required
         />
         <Input
@@ -83,6 +84,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           label='Last name'
           placeholder='Enter your last name'
           wrapperClass='mb-4'
+          data-testid='last-name-input'
           required
         />
         <Input
@@ -96,11 +98,12 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           label='Email or phone'
           placeholder='Enter either your email or phone number'
           wrapperClass='mb-4'
+          data-testid='email-or-phone-input'
           required
         />
         <Input
           {...register('password', {
-            required: 'Password is required',
+            required: 'Password is required.',
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{12,}$/,
               message:
@@ -112,6 +115,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           label='Password'
           placeholder='Enter your password'
           wrapperClass='mb-4'
+          data-testid='password-input'
           required
         />
         <Input
@@ -128,9 +132,10 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           label='Confirm password'
           placeholder='Confirm your password'
           wrapperClass='mb-4'
+          data-testid='confirm-password-input'
           required
         />
-        <Button label='Register' type='submit' fullWidth />
+        <Button data-testid='submit-button' label='Register' type='submit' fullWidth />
       </form>
       <ErrorModal
         title='Failure!'

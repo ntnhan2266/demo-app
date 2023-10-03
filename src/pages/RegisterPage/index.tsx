@@ -6,7 +6,7 @@ import withAuthentication from '@/hocs/withAuthentication';
 
 const RegisterPage: React.FC = () => {
   return (
-    <div data-testid="register-page" className='flex justify-center'>
+    <div data-testid='register-page' className='flex justify-center'>
       <div className='flex-1'>
         <div className='mb-4'>
           <RegisterForm />

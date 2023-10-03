@@ -1,11 +1,7 @@
 import bcrypt from 'bcryptjs';
-import {
-  registerUser,
-  loginUser,
-  updateUser,
-  updatePassword,
-} from './mock-user-database';
+import { registerUser, loginUser, updateUser, updatePassword } from '@/utils/mock-user-database';
 import { LOCALSTORAGE_KEY } from '@/constants/localstorage-key';
+import { IUser } from '@/interfaces/user';
 
 // Mock localStorage for testing
 let localStorageMock: Record<string, string> = {};
@@ -35,7 +31,7 @@ describe('User Functions', () => {
     const registered = registerUser(newUser);
 
     const usersJson = localStorageMock[LOCALSTORAGE_KEY.USERS];
-    const savedUsers = usersJson ? JSON.parse(usersJson) : [];
+    const savedUsers = (usersJson ? JSON.parse(usersJson) : []) as IUser[][];
 
     expect(registered).toBe(true);
     expect(savedUsers).toHaveLength(1);
@@ -95,7 +91,7 @@ describe('User Functions', () => {
     });
 
     const usersJson = localStorageMock[LOCALSTORAGE_KEY.USERS];
-    const savedUsers = usersJson ? JSON.parse(usersJson) : [];
+    const savedUsers = (usersJson ? JSON.parse(usersJson) : []) as IUser[][];
 
     expect(savedUsers).toHaveLength(1);
     expect(savedUsers[0][1]).toEqual({
@@ -122,20 +118,19 @@ describe('User Functions', () => {
     expect(passwordUpdated).toBe(true);
 
     const usersJson = localStorageMock[LOCALSTORAGE_KEY.USERS];
-    const savedUsers = usersJson ? JSON.parse(usersJson) : [];
-
-    const hashedNewPassword = bcrypt.hashSync(newPassword, 10);
+    const savedUsers = (usersJson ? JSON.parse(usersJson) : []) as IUser[][];
 
     expect(savedUsers).toHaveLength(1);
-    expect(savedUsers[0][1].password).toBe(hashedNewPassword);
+    expect(bcrypt.compareSync(newPassword, savedUsers[0][1].password)).toBe(true);
   });
 
   test('should not update user password with incorrect old password', () => {
+    const existingPassword = bcrypt.hashSync('qwerQWER1234!@', 10);
     const existingUser = {
       firstName: 'Existing',
       lastName: 'User',
       emailOrPhone: 'existing@example.com',
-      password: bcrypt.hashSync('qwerQWER1234!@', 10),
+      password: existingPassword,
     };
 
     localStorageMock[LOCALSTORAGE_KEY.USERS] = JSON.stringify([[existingUser.emailOrPhone, existingUser]]);
@@ -148,10 +143,10 @@ describe('User Functions', () => {
     expect(passwordUpdated).toBe(false);
 
     const usersJson = localStorageMock[LOCALSTORAGE_KEY.USERS];
-    const savedUsers = usersJson ? JSON.parse(usersJson) : [];
+    const savedUsers = (usersJson ? JSON.parse(usersJson) : []) as IUser[][];
 
     // Ensure that the password remains unchanged
     expect(savedUsers).toHaveLength(1);
-    expect(savedUsers[0][1].password).toBe(existingUser.password);
+    expect(savedUsers[0][1].password).toEqual(existingUser.password);
   });
 });

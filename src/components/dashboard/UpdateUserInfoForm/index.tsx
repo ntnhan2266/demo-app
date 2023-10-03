@@ -46,6 +46,10 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
       return;
     }
 
+    if (!values.lastName && !values.firstName) {
+      return;
+    }
+
     const result = updateUserInfo(user.emailOrPhone, values);
     if (!result) {
       setIsErrorModalOpen(true);
@@ -58,7 +62,7 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <div data-testid='update-user-info-form'>
       <h2 className='text-2xl font-bold mb-4'>Update your information</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input disabled type='text' label='Email or phone' wrapperClass='mb-4' value={user?.emailOrPhone} />
@@ -69,6 +73,7 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
           label='First name'
           placeholder='Enter your first name'
           wrapperClass='mb-4'
+          data-testid='first-name-input'
         />
         <Input
           {...register('lastName')}
@@ -77,8 +82,9 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
           label='Last name'
           placeholder='Enter your last name'
           wrapperClass='mb-4'
+          data-testid='last-name-input'
         />
-        <Button label='Update Info' type='submit' className='w-96' />
+        <Button data-testid='submit-button' label='Update Info' type='submit' className='w-96' />
       </form>
       <ErrorModal
         title='Failure!'

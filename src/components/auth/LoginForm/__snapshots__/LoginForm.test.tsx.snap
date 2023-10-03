@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should match the snapshot 1`] = `
+<div
+  className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md"
+  data-testid="login-form"
+>
+  <h2
+    className="text-2xl font-bold mb-4"
+  >
+    Login to your account
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="mb-4"
+    >
+      <label
+        className="block text-sm font-semibold mb-1"
+        htmlFor="Email or phone"
+      >
+        Email or phone
+        <sup
+          className="text-red-600"
+        >
+          *
+        </sup>
+      </label>
+      <input
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        data-testid="email-or-phone-input"
+        disabled={false}
+        name="emailOrPhone"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter your email or phone number"
+        type="text"
+      />
+    </div>
+    <div
+      className="mb-4"
+    >
+      <label
+        className="block text-sm font-semibold mb-1"
+        htmlFor="Password"
+      >
+        Password
+        <sup
+          className="text-red-600"
+        >
+          *
+        </sup>
+      </label>
+      <input
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        data-testid="password-input"
+        disabled={false}
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Enter your password"
+        type="password"
+      />
+    </div>
+    <button
+      className="px-4 py-2 rounded-md focus:outline-none  bg-blue-500 text-white w-full"
+      data-testid="submit-button"
+      disabled={false}
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;

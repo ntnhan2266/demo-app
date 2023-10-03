@@ -21,9 +21,10 @@ describe('getDisplayName Function', () => {
   });
 
   test('should return "Component" for a non-component input', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const notAComponent: any = 'not a component';
 
-    const displayName = getDisplayName(notAComponent);
+    const displayName = getDisplayName(notAComponent as React.ComponentType);
 
     expect(displayName).toBe('Component');
   });

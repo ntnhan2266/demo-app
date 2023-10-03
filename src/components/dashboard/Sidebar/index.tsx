@@ -19,7 +19,7 @@ const Sidebar: React.FC = (): React.ReactElement => {
   }
 
   return (
-    <aside className='shadow text-black p-4'>
+    <aside data-testid='sidebar' className='shadow text-black p-4'>
       <div className='mb-4'>
         <h2 className='text-xl font-semibold'>
           {user.firstName} {user.lastName}
