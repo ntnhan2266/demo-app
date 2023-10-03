@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot Testing for App Component should match the snapshot 1`] = `
+<button
+  className="px-4 py-2 rounded-md focus:outline-none  bg-blue-500 text-white"
+  disabled={false}
+  type="button"
+>
+  a
+</button>
+`;

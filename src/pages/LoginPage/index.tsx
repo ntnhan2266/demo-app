@@ -4,9 +4,9 @@ import LoginForm from '@/components/auth/LoginForm';
 import { ROUTE_PATH } from '@/constants/route-path';
 import withAuthentication from '@/hocs/withAuthentication';
 
-const RegisterPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   return (
-    <div className='flex justify-center'>
+    <div data-testid="login-page" className='flex justify-center'>
       <div className='flex-1'>
         <div className='mb-4'>
           <LoginForm />
@@ -24,4 +24,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default withAuthentication(RegisterPage);
+export default withAuthentication(LoginPage);

@@ -1,29 +1,36 @@
-type TransformFunction = (_key: string) => string;
+import _camelCase from 'lodash/camelCase';
+import _snakeCase from 'lodash/snakeCase';
 
-const transformKeys = <T>(obj: Record<string, T>, keyTransform: TransformFunction): Record<string, T> => {
-  if (typeof obj !== 'object' || obj === null) {
-    return obj;
-  }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const camelCaseKeys = (obj: Record<string, any>): any => {
   if (Array.isArray(obj)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-    return obj.map((item) => transformKeys(item, keyTransform)) as any;
+    return obj.map(v => camelCaseKeys(v));
   }
-
-  const transformedObj: Record<string, T> = {};
-
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const transformedKey = keyTransform(key);
-      transformedObj[transformedKey] = obj[key];
-    }
+  if (obj !== null && obj.constructor === Object) {
+    return Object.keys(obj).reduce(
+      (result, key) => ({
+        ...result,
+        [_camelCase(key)]: camelCaseKeys(obj[key]),
+      }),
+      {},
+    );
   }
-
-  return transformedObj;
+  return obj;
 };
 
-export const camelCaseKeys = <T>(obj: Record<string, T>): Record<string, T> =>
-  transformKeys(obj, (key) => key.replace(/_([a-z])/g, (_, group: string) => group.toUpperCase()));
-
-export const snakeCaseKeys = <T>(obj: Record<string, T>): Record<string, T> =>
-  transformKeys(obj, (key) => key.replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const snakeCaseKeys = (obj: Record<string, any>): any => {
+  if (Array.isArray(obj)) {
+    return obj.map(v => snakeCaseKeys(v));
+  }
+  if (obj !== null && obj.constructor === Object) {
+    return Object.keys(obj).reduce(
+      (result, key) => ({
+        ...result,
+        [_snakeCase(key)]: snakeCaseKeys(obj[key]),
+      }),
+      {},
+    );
+  }
+  return obj;
+};

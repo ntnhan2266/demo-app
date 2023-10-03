@@ -1,4 +1,5 @@
 export const ROUTE_PATH = {
+  INDEX: '/',
   LOGIN: '/login',
   REGISTER: '/register',
   DASHBOARD: '/dashboard/*',
