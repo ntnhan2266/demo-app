@@ -29,7 +29,7 @@ Make sure you have the following software installed on your machine:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/demo-app.git
+   git clone https://github.com/ntnhan2266/demo-app.git
    cd demo-app
    ```
 
@@ -59,7 +59,7 @@ or
 npm run dev
 ```
 
-This will launch the app on [http://localhost:3000](http://localhost:3000/) by default.
+This will launch the app on [http://localhost:5173](http://localhost:5173/) by default.
 
 ### Building the App
 
@@ -76,6 +76,22 @@ npm run build
 ```
 
 The compiled files will be available in the `dist` directory.
+
+### Preview production build
+
+To preview production build, run:
+
+```bash
+yarn preview
+```
+
+or
+
+```bash
+npm run preview
+```
+
+This will launch the app with production mode on [http://localhost:4173](http://localhost:4173/) by default.
 
 ### Running Tests
 
@@ -135,7 +151,7 @@ TypeScript interface definitions are stored in the `interfaces/` directory. This
 
 ##### `pages/`
 
-Top-level components that represent pages or views are organized in the `pages/` directory. Each file in this directory may correspond to a different route in your application.
+Top-level components that represent pages or views are organized in the `pages/` directory. Each file in this directory correspond to a different route in your application.
 
 ##### `services/`
 
@@ -151,7 +167,7 @@ Utility functions and helper modules reside in the `utils/` directory. These are
 
 #### `.github/`
 
-This directory holds GitHub-specific configurations. It might include workflows, actions, or any other GitHub-related files.
+This directory holds GitHub-specific configurations. It include workflows, actions, or any other GitHub-related files.
 
 #### `.husky/`
 
@@ -193,7 +209,7 @@ The configuration file for Jest, the testing framework. It specifies settings an
 
 ##### `setupTests.ts`
 
-The configuration file for setting up tests. It may include global test configurations or setups.
+The configuration file for setting up tests. It include global test configurations or setups.
 
 ##### `tailwind.config.js`
 
