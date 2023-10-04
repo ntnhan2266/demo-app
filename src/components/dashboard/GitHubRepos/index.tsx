@@ -92,7 +92,7 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
             }
           }}
         />
-        <Button className='w-40' onClick={fetchInitialData} label='Get repos' type='button' />
+        <Button className='w-40' onClick={fetchInitialData} label='Load repos' type='button' />
       </div>
 
       {repos.length > 0 && (

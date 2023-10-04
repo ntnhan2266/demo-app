@@ -48,8 +48,8 @@ const LoginForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div data-testid='login-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
-      <h2 className='text-2xl font-bold mb-4'>Login to your account</h2>
+    <div data-testid='login-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow'>
+      <h2 className='text-2xl font-bold mb-4 uppercase'>Login to your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           {...register('emailOrPhone', {
@@ -62,6 +62,8 @@ const LoginForm: React.FC = (): React.ReactElement => {
           placeholder='Enter your email or phone number'
           wrapperClass='mb-4'
           data-testid='email-or-phone-input'
+          inputClasses='w-full md:w-full'
+          id='email'
           required
         />
         <Input
@@ -74,6 +76,8 @@ const LoginForm: React.FC = (): React.ReactElement => {
           placeholder='Enter your password'
           wrapperClass='mb-4'
           data-testid='password-input'
+          inputClasses='w-full md:w-full'
+          id='password'
           required
         />
         <Button data-testid='submit-button' label='Login' type='submit' fullWidth />

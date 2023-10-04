@@ -6,7 +6,7 @@ import withAuthentication from '@/hocs/withAuthentication';
 
 const LoginPage: React.FC = () => {
   return (
-    <div data-testid='login-page' className='flex justify-center'>
+    <div data-testid='login-page' className='container mx-auto'>
       <div className='flex-1'>
         <div className='mb-4'>
           <LoginForm />

@@ -64,8 +64,8 @@ const RegisterForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div data-testid='register-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md'>
-      <h2 className='text-2xl font-bold mb-4'>Create your account</h2>
+    <div data-testid='register-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow'>
+      <h2 className='text-2xl font-bold mb-4 uppercase'>Create your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           {...register('firstName', { required: 'First name is required.' })}
@@ -75,6 +75,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           placeholder='Enter your first name'
           wrapperClass='mb-4'
           data-testid='first-name-input'
+          inputClasses='w-full md:w-full'
           required
         />
         <Input
@@ -85,6 +86,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           placeholder='Enter your last name'
           wrapperClass='mb-4'
           data-testid='last-name-input'
+          inputClasses='w-full md:w-full'
           required
         />
         <Input
@@ -99,6 +101,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           placeholder='Enter either your email or phone number'
           wrapperClass='mb-4'
           data-testid='email-or-phone-input'
+          inputClasses='w-full md:w-full'
           required
         />
         <Input
@@ -116,6 +119,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           placeholder='Enter your password'
           wrapperClass='mb-4'
           data-testid='password-input'
+          inputClasses='w-full md:w-full'
           required
         />
         <Input
@@ -133,6 +137,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
           placeholder='Confirm your password'
           wrapperClass='mb-4'
           data-testid='confirm-password-input'
+          inputClasses='w-full md:w-full'
           required
         />
         <Button data-testid='submit-button' label='Register' type='submit' fullWidth />
