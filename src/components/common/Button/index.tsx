@@ -1,11 +1,13 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-interface IProps extends React.InputHTMLAttributes<HTMLButtonElement> {
+interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string | ReactNode;
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'ghost' | 'info' | 'warning' | 'light' | 'dark' | 'link';
   fullWidth?: boolean;
-  type?: 'button' | 'reset' | 'submit';
+  size?: 'small' | 'medium' | 'large';
+  outline?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<IProps> = ({
@@ -14,22 +16,32 @@ const Button: React.FC<IProps> = ({
   variant = 'primary',
   disabled = false,
   fullWidth = false,
-  type = 'button',
+  size = 'medium',
+  outline = false,
   className = '',
   ...props
 }): React.ReactElement => {
-  const buttonClasses = classNames(`px-4 py-2 rounded-md focus:outline-none ${className}`, {
-    'bg-blue-500 text-white': variant === 'primary',
-    'bg-gray-500 text-white': variant === 'secondary',
-    'bg-green-500 text-white': variant === 'success',
-    'bg-red-500 text-white': variant === 'danger',
-    'bg-transparent text-gray-600 border border-gray-500 hover:bg-gray-200': variant === 'ghost',
-    'cursor-not-allowed opacity-50': disabled,
+  const buttonClasses = classNames('rounded-md focus:outline-none', className, {
     'w-full': fullWidth,
+    'cursor-not-allowed opacity-50': disabled,
+    'text-white': !outline,
+    'bg-transparent text-gray-600 border border-gray-500 hover:bg-gray-200': outline,
+    'text-xs px-2 py-1': size === 'small',
+    'text-base px-4 py-2': size === 'medium',
+    'text-lg px-6 py-3': size === 'large',
+    'bg-indigo-500 hover:bg-indigo-600': variant === 'primary' && !disabled && !outline,
+    'bg-gray-500 hover:bg-gray-600': variant === 'secondary' && !disabled && !outline,
+    'bg-green-500 hover:bg-green-600': variant === 'success' && !disabled && !outline,
+    'bg-red-500 hover:bg-red-600': variant === 'danger' && !disabled && !outline,
+    'bg-yellow-500 hover:bg-yellow-600': variant === 'warning' && !disabled && !outline,
+    'bg-blue-200 hover:bg-blue-300': variant === 'info' && !disabled && !outline,
+    'bg-gray-300 hover:bg-gray-400': variant === 'light' && !disabled && !outline,
+    'bg-gray-800 text-white hover:bg-gray-700': variant === 'dark' && !disabled && !outline,
+    'underline text-indigo-500 hover:text-indigo-600': variant === 'link' && !disabled && !outline,
   });
 
   return (
-    <button type={type} onClick={onClick} className={buttonClasses} disabled={disabled} {...props}>
+    <button type='button' onClick={onClick} className={buttonClasses} disabled={disabled} {...props}>
       {label}
     </button>
   );

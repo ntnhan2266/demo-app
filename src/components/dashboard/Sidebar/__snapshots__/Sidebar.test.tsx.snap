@@ -1,72 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sidebar component should match the snapshot 1`] = `
-<aside
-  className="shadow text-black p-4"
-  data-testid="sidebar"
->
+[
   <div
-    className="mb-4"
+    className="flex justify-between items-center lg:hidden border-b border-gray-300 py-2 px-4 shadow"
   >
+    <a
+      className="text-black font-bold font-comfortaa text-3xl"
+      href="/"
+      onClick={[Function]}
+    >
+      βeta
+    </a>
+    <button
+      className="cursor-pointer p-2 font-bol"
+      onClick={[Function]}
+    >
+      <img
+        alt="ic-burger-menu"
+        className="w-6"
+        src="ic-burger-menu.svg"
+      />
+    </button>
+  </div>,
+  <div
+    className="lg:w-64 left-0 right-0 top-0 bottom-0 lg:block shadow-md transition-transform duration-300 ease-in-out p-4 bg-white z-10 lg:z-0 fixed lg:static lg:translate-x-0 translate-x-full"
+    data-testid="sidebar"
+  >
+    <div
+      className="mb-6 lg:block flex items-center justify-between"
+    >
+      <a
+        className="text-black font-bold font-comfortaa text-3xl"
+        href="/"
+        onClick={[Function]}
+      >
+        βeta
+      </a>
+      <button
+        className="cursor-pointer p-2 font-bol lg:hidden"
+        onClick={[Function]}
+      >
+        <img
+          alt="ic-close"
+          className="w-5"
+          src="ic-close.svg"
+        />
+      </button>
+    </div>
     <h2
-      className="text-xl font-semibold"
+      className="text-xl font-semibold mb-2 text-blue-800"
     >
       John
        
       Doe
     </h2>
-    <p>
+    <p
+      className="mb-4 text-gray-600"
+    >
       john.doe@example.com
     </p>
-  </div>
-  <nav>
-    <ul>
-      <li
-        className="mb-2"
-      >
-        <a
-          className="block w-full text-left hover:bg-green p-2"
-          href="/dashboard/update-info"
-          onClick={[Function]}
+    <nav
+      className=""
+    >
+      <ul>
+        <li
+          className="mb-2"
         >
-          Update user info
-        </a>
-      </li>
-      <li
-        className="mb-2"
-      >
-        <a
-          className="block w-full text-left hover:bg-green p-2"
-          href="/dashboard/update-password"
-          onClick={[Function]}
+          <a
+            className=" block w-full text-left p-2 rounded-md transition duration-300 hover:bg-indigo-100"
+            href="/dashboard/github-repos"
+            onClick={[Function]}
+          >
+            Github repos
+          </a>
+        </li>
+        <li
+          className="mb-2"
         >
-          Update password
-        </a>
-      </li>
-      <li
-        className="mb-2"
-      >
-        <a
-          className="block w-full text-left hover:bg-blue-300 p-2"
-          href="/dashboard/github-repos"
-          onClick={[Function]}
+          <a
+            className=" block w-full text-left p-2 rounded-md transition duration-300 hover:bg-indigo-100"
+            href="/dashboard/update-info"
+            onClick={[Function]}
+          >
+            Update user info
+          </a>
+        </li>
+        <li
+          className="mb-2"
         >
-          Query github repos
-        </a>
-      </li>
-      <li
-        className="mb-2"
+          <a
+            className=" block w-full text-left p-2 rounded-md transition duration-300 hover:bg-indigo-100"
+            href="/dashboard/update-password"
+            onClick={[Function]}
+          >
+            Update password
+          </a>
+        </li>
+      </ul>
+      <button
+        className="rounded-md focus:outline-none absolute left-4 right-4 bottom-6 text-white text-base px-4 py-2 bg-gray-500 hover:bg-gray-600"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
       >
-        <button
-          className="px-4 py-2 rounded-md focus:outline-none  bg-transparent text-gray-600 border border-gray-500 hover:bg-gray-200 w-full"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Logout
-        </button>
-      </li>
-    </ul>
-  </nav>
-</aside>
+        Logout
+      </button>
+    </nav>
+  </div>,
+]
 `;

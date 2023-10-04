@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-dayjs.extend(utc)
+dayjs.extend(utc);
 
 /**
  * Format a timestamp or date using dayjs.

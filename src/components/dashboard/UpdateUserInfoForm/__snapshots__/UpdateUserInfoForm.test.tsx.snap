@@ -5,7 +5,7 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
   data-testid="update-user-info-form"
 >
   <h2
-    className="text-2xl font-bold mb-4"
+    className="text-2xl font-bold mb-8 uppercase"
   >
     Update your information
   </h2>
@@ -16,13 +16,12 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
       className="mb-4"
     >
       <label
-        className="block text-sm font-semibold mb-1"
-        htmlFor="Email or phone"
+        className="block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out "
       >
         Email or phone
       </label>
       <input
-        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  bg-gray-200 cursor-not-allowed"
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-full md:w-96 max-w-full  bg-gray-200 cursor-not-allowed"
         disabled={true}
         placeholder=""
         type="text"
@@ -33,13 +32,13 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
       className="mb-4"
     >
       <label
-        className="block text-sm font-semibold mb-1"
-        htmlFor="First name"
+        className="block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out "
+        htmlFor="firstName"
       >
         First name
       </label>
       <input
-        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-full md:w-96 max-w-full  border-gray-400"
         data-testid="first-name-input"
         disabled={false}
         name="firstName"
@@ -53,13 +52,13 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
       className="mb-4"
     >
       <label
-        className="block text-sm font-semibold mb-1"
-        htmlFor="Last name"
+        className="block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out "
+        htmlFor="lastName"
       >
         Last name
       </label>
       <input
-        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+        className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-full md:w-96 max-w-full  border-gray-400"
         data-testid="last-name-input"
         disabled={false}
         name="lastName"
@@ -70,7 +69,7 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
       />
     </div>
     <button
-      className="px-4 py-2 rounded-md focus:outline-none w-96 bg-blue-500 text-white"
+      className="rounded-md focus:outline-none w-full lg:w-96 text-white text-base px-4 py-2 bg-indigo-500 hover:bg-indigo-600"
       data-testid="submit-button"
       disabled={false}
       type="submit"

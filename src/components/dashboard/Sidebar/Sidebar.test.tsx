@@ -55,7 +55,7 @@ describe('Sidebar component', () => {
   test('renders navigation links when user is present', () => {
     const updateInfoLink = screen.getByText('Update user info');
     const updatePasswordLink = screen.getByText('Update password');
-    const githubReposLink = screen.getByText('Query github repos');
+    const githubReposLink = screen.getByText('Github repos');
     const logoutButton = screen.getByText('Logout');
 
     expect(updateInfoLink).toBeInTheDocument();

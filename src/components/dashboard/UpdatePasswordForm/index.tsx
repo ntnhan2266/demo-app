@@ -67,7 +67,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
 
   return (
     <div data-testid='update-user-password-form'>
-      <h2 className='text-2xl font-bold mb-4'>Update your password</h2>
+      <h2 className='text-2xl font-bold mb-8 uppercase'>Update your password</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           {...register('currentPassword', { required: 'Current password is required.' })}
@@ -113,7 +113,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
           data-testid='confirm-password-input'
           required
         />
-        <Button data-testid='submit-button' label='Update Password' type='submit' className='w-96' />
+        <Button data-testid='submit-button' label='Update Password' type='submit' className='w-full lg:w-96' />
       </form>
       <ErrorModal
         title='Failure!'

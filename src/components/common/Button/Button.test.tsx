@@ -25,7 +25,7 @@ describe('Button component', () => {
   test('applies primary variant styles', () => {
     render(<Button label='Primary' variant='primary' />);
     const button = screen.getByText('Primary');
-    expect(button).toHaveClass('bg-blue-500');
+    expect(button).toHaveClass('bg-indigo-500');
   });
 
   test('applies secondary variant styles', () => {
@@ -49,8 +49,8 @@ describe('Button component', () => {
   test('applies ghost variant styles', () => {
     render(<Button label='Ghost' variant='ghost' />);
     const button = screen.getByText('Ghost');
-    expect(button).toHaveClass('bg-transparent');
-    expect(button).toHaveClass('hover:bg-gray-200');
+    expect(button).toHaveClass('text-white');
+    expect(button).toHaveClass('focus:outline-none');
   });
 
   test('applies fullWidth styles', () => {

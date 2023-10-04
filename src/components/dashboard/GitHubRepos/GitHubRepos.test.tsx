@@ -36,12 +36,12 @@ describe('GitHubRepos', () => {
     const usernameInput = screen.getByPlaceholderText('Enter your Github username');
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
 
-    // Click the "Get repos" button
-    fireEvent.click(screen.getByText('Get repos'));
+    // Click the "Load repos" button
+    fireEvent.click(screen.getByText('Load repos'));
 
     // Wait for the API call to complete
     await waitFor(() => {
-      expect(getListReposByUsername).toHaveBeenCalledWith({ username: 'testuser', page: 1 });
+      expect(getListReposByUsername).toHaveBeenCalledWith({ username: 'testuser', page: 1, perPage: 20 });
     });
 
     // Verify that the repositories are rendered
