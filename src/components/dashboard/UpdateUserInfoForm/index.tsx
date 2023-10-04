@@ -63,7 +63,7 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
 
   return (
     <div data-testid='update-user-info-form'>
-      <h2 className='text-2xl font-bold mb-4'>Update your information</h2>
+      <h2 className='text-2xl font-bold mb-8 uppercase'>Update your information</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input disabled type='text' label='Email or phone' wrapperClass='mb-4' value={user?.emailOrPhone} />
         <Input

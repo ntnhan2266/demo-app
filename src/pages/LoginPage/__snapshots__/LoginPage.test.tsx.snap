@@ -2,7 +2,7 @@
 
 exports[`LoginPage should match the snapshot 1`] = `
 <div
-  className="flex justify-center"
+  className="container mx-auto"
   data-testid="login-page"
 >
   <div
@@ -12,11 +12,11 @@ exports[`LoginPage should match the snapshot 1`] = `
       className="mb-4"
     >
       <div
-        className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md"
+        className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow"
         data-testid="login-form"
       >
         <h2
-          className="text-2xl font-bold mb-4"
+          className="text-2xl font-bold mb-4 uppercase"
         >
           Login to your account
         </h2>
@@ -27,8 +27,8 @@ exports[`LoginPage should match the snapshot 1`] = `
             className="mb-4"
           >
             <label
-              className="block text-sm font-semibold mb-1"
-              htmlFor="Email or phone"
+              className="block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out "
+              htmlFor="email"
             >
               Email or phone
               <sup
@@ -38,9 +38,10 @@ exports[`LoginPage should match the snapshot 1`] = `
               </sup>
             </label>
             <input
-              className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+              className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-full md:w-96 max-w-full w-full md:w-full border-gray-400"
               data-testid="email-or-phone-input"
               disabled={false}
+              id="email"
               name="emailOrPhone"
               onBlur={[Function]}
               onChange={[Function]}
@@ -52,8 +53,8 @@ exports[`LoginPage should match the snapshot 1`] = `
             className="mb-4"
           >
             <label
-              className="block text-sm font-semibold mb-1"
-              htmlFor="Password"
+              className="block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out "
+              htmlFor="password"
             >
               Password
               <sup
@@ -63,9 +64,10 @@ exports[`LoginPage should match the snapshot 1`] = `
               </sup>
             </label>
             <input
-              className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-96 max-w-full  border-gray-400"
+              className="border rounded-md px-3 py-2 focus:outline-none transition duration-300 w-full md:w-96 max-w-full w-full md:w-full border-gray-400"
               data-testid="password-input"
               disabled={false}
+              id="password"
               name="password"
               onBlur={[Function]}
               onChange={[Function]}
@@ -74,7 +76,7 @@ exports[`LoginPage should match the snapshot 1`] = `
             />
           </div>
           <button
-            className="px-4 py-2 rounded-md focus:outline-none  bg-blue-500 text-white w-full"
+            className="rounded-md focus:outline-none w-full text-white text-base px-4 py-2 bg-indigo-500 hover:bg-indigo-600"
             data-testid="submit-button"
             disabled={false}
             type="submit"

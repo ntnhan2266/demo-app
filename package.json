@@ -11,7 +11,7 @@
     "format": "prettier --write .",
     "preview": "vite preview",
     "pre-commit": "lint-staged",
-    "test": "jest -u",
+    "test": "jest",
     "postinstall": "husky install"
   },
   "dependencies": {

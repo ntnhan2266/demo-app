@@ -79,7 +79,7 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
 
   return (
     <div data-testid='github-repos'>
-      <h1 className='text-lg font-bold mb-4'>Github Repos</h1>
+      <h1 className='text-2xl font-bold mb-8 uppercase'>Github Repos</h1>
       <div className='flex items-center gap-4'>
         <Input
           inputClasses='w-96'

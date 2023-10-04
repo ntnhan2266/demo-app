@@ -36,8 +36,8 @@ describe('GitHubRepos', () => {
     const usernameInput = screen.getByPlaceholderText('Enter your Github username');
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
 
-    // Click the "Get repos" button
-    fireEvent.click(screen.getByText('Get repos'));
+    // Click the "Load repos" button
+    fireEvent.click(screen.getByText('Load repos'));
 
     // Wait for the API call to complete
     await waitFor(() => {

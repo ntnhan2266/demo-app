@@ -37,7 +37,7 @@ const Input: React.FC<IProps> = React.forwardRef<HTMLInputElement, IProps>(
       },
     );
 
-    const labelClasses = classNames('block w-full mb-1 text-xs uppercase font-medium text-gray-500 transition-all duration-200 ease-in-out ', {
+    const labelClasses = classNames('block w-full mb-1 text-xs font-medium text-gray-500 transition-all duration-200 ease-in-out ', {
       'text-red-600': errorMessage,
     });
 
