@@ -44,7 +44,7 @@ const Modal: React.FC<IProps> = ({
 
   return (
     <div
-      className={`fixed z-10 inset-0 overflow-y-auto ${centerClass}`}
+      className={`fixed z-10 p-4 inset-0 overflow-y-auto ${centerClass}`}
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
       role='button'
