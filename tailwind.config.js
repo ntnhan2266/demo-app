@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter Tight', ...defaultTheme.fontFamily.sans],
+        comfortaa: ['Comfortaa'],
       },
     },
   },

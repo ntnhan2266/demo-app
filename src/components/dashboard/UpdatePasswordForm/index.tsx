@@ -113,7 +113,7 @@ const UpdateUserPasswordForm: React.FC = (): React.ReactElement => {
           data-testid='confirm-password-input'
           required
         />
-        <Button data-testid='submit-button' label='Update Password' type='submit' className='w-96' />
+        <Button data-testid='submit-button' label='Update Password' type='submit' className='w-full lg:w-96' />
       </form>
       <ErrorModal
         title='Failure!'

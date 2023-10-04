@@ -199,10 +199,9 @@ The configuration file for setting up tests. It may include global test configur
 
 This file contains the configuration for Tailwind CSS, a utility-first CSS framework.
 
-
 ## Build status
-[![Build Status](https://github.com/ntnhan2266/demo-app/actions/workflows/production-workflow.yaml/badge.svg)](https://github.com/ntnhan2266/demo-app/actions/workflows/production-workflow.yaml)
 
+[![Build Status](https://github.com/ntnhan2266/demo-app/actions/workflows/production-workflow.yaml/badge.svg)](https://github.com/ntnhan2266/demo-app/actions/workflows/production-workflow.yaml)
 
 ## License
 

@@ -21,8 +21,8 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
     formState: { errors },
   } = useForm<IFormInputs>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
+      firstName: user?.firstName || '',
+      lastName: user?.lastName || '',
     },
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -58,7 +58,7 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
 
     setUser(result);
     setIsSuccessModalOpen(true);
-    reset(); // Reset the form on successful update
+    reset(result); // Reset the form on successful update
   };
 
   return (
@@ -84,7 +84,7 @@ const UpdateInfoForm: React.FC = (): React.ReactElement => {
           wrapperClass='mb-4'
           data-testid='last-name-input'
         />
-        <Button data-testid='submit-button' label='Update Info' type='submit' className='w-96' />
+        <Button data-testid='submit-button' label='Update Info' type='submit' className='w-full lg:w-96' />
       </form>
       <ErrorModal
         title='Failure!'

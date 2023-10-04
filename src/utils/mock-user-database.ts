@@ -1,3 +1,6 @@
+// This file simulate server to handle authentication
+// Server level
+
 import bcrypt from 'bcryptjs';
 import { LOCALSTORAGE_KEY } from '@/constants/localstorage-key';
 import { IUser } from '@/interfaces/user';
@@ -60,7 +63,8 @@ export const updateUser = (emailOrPhone: string, updatedInfo: Partial<Omit<IUser
     // Update the user's information
     const updatedUser: IUser = {
       ...userToUpdate,
-      ...updatedInfo,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ...Object.fromEntries(Object.entries(updatedInfo).filter(([_key, value]) => value !== '')),
     };
 
     // Save the updated user back to the map

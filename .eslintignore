@@ -7,3 +7,4 @@ yarn.lock
 **/*.md
 jest.config.ts
 setupTests.ts
+fileTransformer.ts

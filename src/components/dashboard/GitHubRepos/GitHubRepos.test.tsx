@@ -41,7 +41,7 @@ describe('GitHubRepos', () => {
 
     // Wait for the API call to complete
     await waitFor(() => {
-      expect(getListReposByUsername).toHaveBeenCalledWith({ username: 'testuser', page: 1 });
+      expect(getListReposByUsername).toHaveBeenCalledWith({ username: 'testuser', page: 1, perPage: 20 });
     });
 
     // Verify that the repositories are rendered

@@ -1,4 +1,5 @@
 import React, { ReactNode, KeyboardEvent } from 'react';
+import cs from 'classnames';
 
 interface IProps {
   isOpen: boolean;
@@ -20,14 +21,12 @@ const Modal: React.FC<IProps> = ({
   size,
   backdrop,
   isCenter,
-  customClass,
+  customClass = '',
   closeOnBackdropClick = true,
   closeOnEscape = true,
   closeButtonLabel,
 }): React.ReactElement => {
   if (!isOpen) return <></>;
-
-  const modalSizeClass = size ? `modal-${size}` : '';
   const backdropClass = backdrop ? 'bg-black opacity-40' : '';
   const centerClass = isCenter ? 'items-center justify-center' : '';
 
@@ -45,7 +44,7 @@ const Modal: React.FC<IProps> = ({
 
   return (
     <div
-      className={`fixed inset-0 overflow-y-auto ${centerClass}`}
+      className={`fixed z-10 inset-0 overflow-y-auto ${centerClass}`}
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
       role='button'
@@ -53,7 +52,13 @@ const Modal: React.FC<IProps> = ({
     >
       <div className={`flex ${centerClass} min-h-screen`}>
         <div className={`fixed inset-0 ${backdropClass}`}></div>
-        <div className={`z-50 bg-white p-8 rounded-lg shadow-lg ${modalSizeClass} ${customClass}`}>
+        <div
+          className={cs(`z-50 bg-white p-8 rounded-lg shadow-lg ${customClass} w-full`, {
+            'max-w-sm': size === 'small',
+            'max-w-md': size === 'medium',
+            'max-w-lg': size === 'large',
+          })}
+        >
           {children}
           <button className='mt-6 bg-black rounded-full text-white p-2 w-full font-semibold' onClick={onClose}>
             {closeButtonLabel}

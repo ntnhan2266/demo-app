@@ -8,11 +8,11 @@ import withAuthentication from '@/hocs/withAuthentication';
 
 const DashboardPage: React.FC = () => {
   return (
-    <div data-testid='dashboard-page' className='flex h-screen bg-gray-100'>
+    <div data-testid='dashboard-page' className='flex flex-col lg:flex-row h-screen bg-gray-100'>
       <Sidebar />
 
       <div className='flex-1 flex flex-col overflow-hidden'>
-        <main className='flex-1 overflow-x-hidden overflow-y-auto pt-8 pl-8 pr-8 pb-16'>
+        <main className='flex-1 overflow-x-hidden overflow-y-auto p-4 lg:p-8'>
           <Routes>
             <Route path='/update-info' element={<UpdateUserInfoForm />} />
             <Route path='/update-password' element={<UpdateUserPasswordForm />} />

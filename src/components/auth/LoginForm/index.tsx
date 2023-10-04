@@ -44,11 +44,11 @@ const LoginForm: React.FC = (): React.ReactElement => {
     reset();
 
     // Navigate to the dashboard or any other page after login
-    navigate(ROUTE_PATH.DASHBOARD_UPDATE_INFO);
+    navigate(ROUTE_PATH.DASHBOARD_GITHUB_REPOS);
   };
 
   return (
-    <div data-testid='login-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow'>
+    <div data-testid='login-form'>
       <h2 className='text-2xl font-bold mb-4 uppercase'>Login to your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input

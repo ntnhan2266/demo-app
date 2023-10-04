@@ -69,7 +69,7 @@ exports[`UpdateUserInfoForm component should match the snapshot 1`] = `
       />
     </div>
     <button
-      className="rounded-md focus:outline-none w-96 text-white text-base px-4 py-2 bg-indigo-500 hover:bg-indigo-600"
+      className="rounded-md focus:outline-none w-full lg:w-96 text-white text-base px-4 py-2 bg-indigo-500 hover:bg-indigo-600"
       data-testid="submit-button"
       disabled={false}
       type="submit"

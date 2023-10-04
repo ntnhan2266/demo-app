@@ -64,7 +64,7 @@ const RegisterForm: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <div data-testid='register-form' className='max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow'>
+    <div data-testid='register-form'>
       <h2 className='text-2xl font-bold mb-4 uppercase'>Create your account</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input

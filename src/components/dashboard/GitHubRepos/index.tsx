@@ -6,6 +6,7 @@ import { getListReposByUsername } from '@/services/github';
 import Button from '@/components/common/Button';
 import { LOCALSTORAGE_KEY } from '@/constants/localstorage-key';
 import { formatTime } from '@/utils/time';
+import { shareLinkToLinkedin } from '@/services/mock-linkedin-api';
 
 const GitHubRepos: React.FC = (): React.ReactElement => {
   const [repos, setRepos] = useState<Array<IGithubRepo>>([]);
@@ -16,11 +17,17 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleShareSuccess = (repoId: number) => {
+  const handleShare = async (repo: IGithubRepo): Promise<void> => {
+    const res = await shareLinkToLinkedin(repo);
+    if (res.error) {
+      console.log('Failed to share link');
+      return;
+    }
+
     setShareCounts((prevCounts) => {
       const newCounts = {
         ...prevCounts,
-        [repoId]: (prevCounts[repoId] || 0) + 1,
+        [repo.id]: (prevCounts[repo.id] || 0) + 1,
       };
 
       localStorage.setItem(LOCALSTORAGE_KEY.SHARE_COUNTS, JSON.stringify(newCounts));
@@ -43,8 +50,9 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
       const res = await getListReposByUsername({
         username,
         page: fetchPage,
+        perPage: 20,
       });
-      setHasMore(res.length > 0);
+      setHasMore(res.length === 20);
       if (fetchPage === 1) {
         setRepos(res);
       } else {
@@ -55,7 +63,8 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
       console.error('Error fetching data:', error);
       setRepos([]);
       setHasMore(false);
-      setError('Error fetching data. Please try again.'); // Set error state
+      const errorMessage = (error as Error).message;
+      setError(errorMessage || 'Error fetching data. Please try again.'); // Set error state
     } finally {
       setLoading(false);
     }
@@ -96,55 +105,58 @@ const GitHubRepos: React.FC = (): React.ReactElement => {
       </div>
 
       {repos.length > 0 && (
-        <table className='min-w-full leading-normal mt-16'>
-          <thead>
-            <tr>
-              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
-                Repo name
-              </th>
-              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
-                Created at
-              </th>
-              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
-                Language
-              </th>
-              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
-                Share count
-              </th>
-              <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'></th>
-            </tr>
-          </thead>
-          <tbody>
-            {repos.map((repo) => (
-              <tr key={repo.id}>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                  <a target='_blank' rel='noreferrer' className='hover:underline' href={repo.htmlUrl}>
-                    {repo.name}
-                  </a>
-                </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                  {formatTime(repo.createdAt, 'DD-MM-YYYY')}
-                </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>{repo.language}</td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                  <span>{shareCounts[repo.id] || 0}</span>
-                </td>
-                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                  <LinkedinShareButton
-                    beforeOnClick={() => handleShareSuccess(repo.id)}
-                    title={repo.name}
-                    summary={repo.description}
-                    source={repo.htmlUrl}
-                    url={repo.htmlUrl}
-                  >
-                    <LinkedinIcon size={32} />
-                  </LinkedinShareButton>
-                </td>
+        <div className='overflow-x-auto'>
+          <table className='min-w-full leading-normal mt-16 table-auto'>
+            <thead>
+              <tr>
+                <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                  Repo name
+                </th>
+                <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                  Created at
+                </th>
+                <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                  Language
+                </th>
+                <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'>
+                  Share count
+                </th>
+                <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider'></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {repos.map((repo) => (
+                <tr key={repo.id}>
+                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                    <a target='_blank' rel='noreferrer' className='hover:underline' href={repo.htmlUrl}>
+                      {repo.name}
+                    </a>
+                  </td>
+                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                    {formatTime(repo.createdAt, 'DD-MM-YYYY')}
+                  </td>
+                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>{repo.language}</td>
+                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                    <span>{shareCounts[repo.id] || 0}</span>
+                  </td>
+                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                    <LinkedinShareButton
+                      beforeOnClick={() => handleShare(repo)}
+                      title={repo.name}
+                      summary={repo.description}
+                      source={repo.htmlUrl}
+                      url={repo.htmlUrl}
+                    >
+                      <LinkedinIcon size={32} />
+                    </LinkedinShareButton>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
+      {!hasMore && !error && !loading && repos.length === 0 && <p className='text-center mt-4'>No data found.</p>}
 
       {loading && <p className='text-center mt-4'>Loading...</p>}
       {error && <p className='mt-4 text-red-500'>{error}</p>}
